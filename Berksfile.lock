@@ -1,0 +1,5 @@
+DEPENDENCIES
+  java (~> 1.25.0)
+
+GRAPH
+  java (1.25.0)
