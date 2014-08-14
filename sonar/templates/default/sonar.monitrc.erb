@@ -1,0 +1,4 @@
+check process sonar with pidfile <%= node.sonar['dir']  %>/SonarQube.pid
+	start program = "sh /opt/sonar/bin/<%= node.sonar['os_kernel']%>/sonar.sh start"
+	stop program = "sh /opt/sonar/bin/<%= node.sonar['os_kernel']%>/sonar.sh stop"
+	restart program = "sh /opt/sonar/bin/<%= node.sonar['os_kernel']%>/sonar.sh restart"
