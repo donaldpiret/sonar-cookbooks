@@ -2,7 +2,8 @@ include_recipe "java"
 include_recipe "opsworks_agent_monit::service"
 include_recipe "sonar::packages"
 
-Chef::Log.debug("#{node[:sonar][:mirror]}/sonar-#{node[:sonar][:version]}.zip")
+Chef::Log.info("About to download remote file")
+Chef::Log.info("#{node[:sonar][:mirror]}/sonar-#{node[:sonar][:version]}.zip")
 
 remote_file "#{node[:sonar][:basedir]}/sonar-#{node[:sonar][:version]}.zip" do
   source "#{node[:sonar][:mirror]}/sonar-#{node[:sonar][:version]}.zip"
