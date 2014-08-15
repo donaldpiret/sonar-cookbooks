@@ -1,4 +1,4 @@
 check process sonar with pidfile <%= node.sonar['dir']  %>/bin/<%= node.sonar['os_kernel']%>sonar.pid
-	start program = "sh <%= node.sonar['dir']  %>/bin/<%= node.sonar['os_kernel']%>/sonar.sh start"
-	stop program = "sh <%= node.sonar['dir']  %>/bin/<%= node.sonar['os_kernel']%>/sonar.sh stop"
-	restart program = "sh <%= node.sonar['dir']  %>/bin/<%= node.sonar['os_kernel']%>/sonar.sh restart"
+	start program = "/bin/sh <%= node.sonar['dir']  %>/bin/<%= node.sonar['os_kernel']%>/sonar.sh start"
+	stop program = "/bin/sh <%= node.sonar['dir']  %>/bin/<%= node.sonar['os_kernel']%>/sonar.sh stop"
+	restart program = "/bin/sh <%= node.sonar['dir']  %>/bin/<%= node.sonar['os_kernel']%>/sonar.sh restart"

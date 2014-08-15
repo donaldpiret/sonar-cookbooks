@@ -1,7 +1,7 @@
 include_recipe "sonar::service"
 
 template "sonar.properties" do
-  path "/opt/sonar/conf/sonar.properties"
+  path "#{node['sonar']['dir']}/conf/sonar.properties"
   source "sonar.properties.erb"
   owner "root"
   group "root"
@@ -13,7 +13,7 @@ template "sonar.properties" do
 end
 
 template "wrapper.conf" do
-  path "/opt/sonar/conf/wrapper.conf"
+  path "#{node['sonar']['dir']}/conf/wrapper.conf"
   source "wrapper.conf.erb"
   owner "root"
   group "root"
