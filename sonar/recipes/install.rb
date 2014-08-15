@@ -2,23 +2,20 @@ include_recipe "java"
 include_recipe "opsworks_agent_monit::service"
 include_recipe "sonar::packages"
 
-Chef::Log.info("About to download remote file")
-Chef::Log.info("#{node[:sonar][:mirror]}/sonar-#{node[:sonar][:version]}.zip")
-
-remote_file "#{node[:sonar][:basedir]}/sonar-#{node[:sonar][:version]}.zip" do
-  source "#{node[:sonar][:mirror]}/sonar-#{node[:sonar][:version]}.zip"
+remote_file "#{node[:sonar][:basedir]}/sonarqube-#{node[:sonar][:version]}.zip" do
+  source "#{node[:sonar][:mirror]}/sonarqube-#{node[:sonar][:version]}.zip"
   mode "0644"
   checksum "#{node[:sonar][:checksum]}"
-  not_if { ::File.exists?("#{node[:sonar][:basedir]}/sonar-#{node[:sonar][:version]}.zip") }
+  not_if { ::File.exists?("#{node[:sonar][:basedir]}/sonarqube-#{node[:sonar][:version]}.zip") }
 end
 
-execute "unzip #{node[:sonar][:basedir]}/sonar-#{node[:sonar][:version]}.zip -d #{node[:sonar][:basedir]}" do
+execute "unzip #{node[:sonar][:basedir]}/sonarqube-#{node[:sonar][:version]}.zip -d #{node[:sonar][:basedir]}" do
   notifies :stop, 'service[sonar]', :immediate
-  not_if { ::File.directory?("#{node[:sonar][:basedir]}/sonar-#{node[:sonar][:version]}/") }
+  not_if { ::File.directory?("#{node[:sonar][:basedir]}/sonarqube-#{node[:sonar][:version]}/") }
 end
 
 link node[:sonar][:dir] do
-  to "#{node[:sonar][:basedir]}/sonar-#{node[:sonar][:version]}"
+  to "#{node[:sonar][:basedir]}/sonarqube-#{node[:sonar][:version]}"
 end
 
 link '/etc/init.d/sonar' do
