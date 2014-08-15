@@ -2,20 +2,20 @@ include_recipe "java"
 include_recipe "opsworks_agent_monit::service"
 include_recipe "sonar::packages"
 
-remote_file "#{node['sonar']['basedir']}/sonar-#{node['sonar']['version']}.zip" do
-  source "#{node['sonar']['mirror']}/sonar-#{node['sonar']['version']}.zip"
+remote_file "#{node[:sonar][:basedir]}/sonar-#{node[:sonar][:version]}.zip" do
+  source "#{node[:sonar][:mirror]}/sonar-#{node[:sonar][:version]}.zip"
   mode "0644"
-  checksum "#{node['sonar']['checksum']}"
-  not_if { ::File.exists?("#{node['sonar']['basedir']}/sonar-#{node['sonar']['version']}.zip") }
+  checksum "#{node[:sonar][:checksum]}"
+  not_if { ::File.exists?("#{node[:sonar]['basedir']}/sonar-#{node[:sonar][:version]}.zip") }
 end
 
-execute "unzip #{node['sonar']['basedir']}/sonar-#{node['sonar']['version']}.zip -d #{node['sonar']['basedir']}" do
+execute "unzip #{node[:sonar][:basedir]}/sonar-#{node[:sonar][:version]}.zip -d #{node[:sonar][:basedir]}" do
   notifies :stop, 'service[sonar]', :immediate
-  not_if { ::File.directory?("#{node['sonar']['basedir']}/sonar-#{node['sonar']['version']}/") }
+  not_if { ::File.directory?("#{node[:sonar][:basedir]}/sonar-#{node[:sonar][:version]}/") }
 end
 
-link node['sonar']['dir'] do
-  to "#{node['sonar']['basedir']}/sonar-#{node['sonar']['version']}"
+link node[:sonar][:dir] do
+  to "#{node[:sonar][:basedir]}/sonar-#{node[:sonar][:version]}"
 end
 
 link '/etc/init.d/sonar' do
