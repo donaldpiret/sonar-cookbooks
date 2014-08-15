@@ -1,8 +1,8 @@
 # General settings
 default['sonar']['basedir']                = "/opt"
 default['sonar']['dir']                    = [node.sonar[:basedir], 'sonar'].join('/')
-default['sonar']['version']                = "2.11"
-default['sonar']['checksum']               = "9d05e25ca79c33d673004444d89c8770"
+default['sonar']['version']                = "4.4"
+default['sonar']['checksum']               = "e053aa73e011df9ad6931aaa15380d4f"
 default['sonar']['os_kernel']              = "linux-x86-32"
 default['sonar']['mirror']                 = "http://dist.sonar.codehaus.org"
 
