@@ -10,11 +10,21 @@ remote_file "#{node['sonar']['basedir']}/sonar-#{node['sonar']['version']}.zip" 
 end
 
 execute "unzip #{node['sonar']['basedir']}/sonar-#{node['sonar']['version']}.zip -d #{node['sonar']['basedir']}" do
+  notifies :stop, 'service[sonar]', :immediate
   not_if { ::File.directory?("#{node['sonar']['basedir']}/sonar-#{node['sonar']['version']}/") }
 end
 
 link node['sonar']['dir'] do
   to "#{node['sonar']['basedir']}/sonar-#{node['sonar']['version']}"
+end
+
+link '/etc/init.d/sonar' do
+  to "#{node[:sonar][:dir]}/bin/#{node[:sonar][:os_kernel]}/sonar.sh"
+end
+
+service 'sonar' do
+  supports :status => true, :restart => true, :start => true, :stop => true
+  action [:enable, :start]
 end
 
 include_recipe "sonar::configure"
