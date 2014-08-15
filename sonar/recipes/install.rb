@@ -2,11 +2,13 @@ include_recipe "java"
 include_recipe "opsworks_agent_monit::service"
 include_recipe "sonar::packages"
 
+Chef::Log.debug("#{node[:sonar][:mirror]}/sonar-#{node[:sonar][:version]}.zip")
+
 remote_file "#{node[:sonar][:basedir]}/sonar-#{node[:sonar][:version]}.zip" do
   source "#{node[:sonar][:mirror]}/sonar-#{node[:sonar][:version]}.zip"
   mode "0644"
   checksum "#{node[:sonar][:checksum]}"
-  not_if { ::File.exists?("#{node[:sonar]['basedir']}/sonar-#{node[:sonar][:version]}.zip") }
+  not_if { ::File.exists?("#{node[:sonar][:basedir]}/sonar-#{node[:sonar][:version]}.zip") }
 end
 
 execute "unzip #{node[:sonar][:basedir]}/sonar-#{node[:sonar][:version]}.zip -d #{node[:sonar][:basedir]}" do
