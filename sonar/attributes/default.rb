@@ -28,12 +28,11 @@ default[:sonar][:jdbc_url]               = "jdbc:h2:tcp://localhost:9092/sonar"
 
 # Wrapper settings eg. for performance improvements
 # @see http://docs.codehaus.org/display/SONAR/Performances
-default[:sonar][:java_additional]        = "-server"
 default[:sonar][:java_initmemory]        = "256"
-default[:sonar][:java_maxmemory]         = "512"
-default[:sonar][:java_maxpermsize]       = "128m"
+default[:sonar][:java_maxmemory]         = "1024"
+default[:sonar][:java_maxpermsize]       = "160m"
 default[:sonar][:java_command]           = "java"
 default[:sonar][:logfile_maxsize]        = "0"
-default[:sonar][:syslog_loglevel]        = "NONE"
+default[:sonar][:syslog_loglevel]        = "INFO"
 
 default[:sonar][:options]                = {}
