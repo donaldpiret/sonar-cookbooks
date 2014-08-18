@@ -34,5 +34,5 @@ template "#{node.default[:monit][:conf_dir]}/sonar.monitrc" do
   source "sonar.monitrc.erb"
   cookbook 'sonar'
   owner 'root' and mode 0644
-  notifies :restart, "service[sonar]", :immediately
+  notifies :reload, "service[monit]", :immediately
 end
