@@ -18,6 +18,7 @@ end
 end
 
 depends 'database'
+depends 'mysql'
 
 attribute "sonar/dir",
   :display_name => "Sonar directory",

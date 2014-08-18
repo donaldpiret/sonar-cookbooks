@@ -1,6 +1,7 @@
 DEPENDENCIES
   database
   java (~> 1.25.0)
+  mysql
   nginx (~> 2.7.4)
   ohai
 
