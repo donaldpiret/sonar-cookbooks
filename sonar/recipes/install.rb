@@ -25,6 +25,7 @@ end
 service 'sonar' do
   supports :status => true, :restart => true, :start => true, :stop => true
   action [:enable, :start]
+  notifies :reload, "service[nginx]"
 end
 
 include_recipe "sonar::configure"
