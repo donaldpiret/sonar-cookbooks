@@ -17,6 +17,8 @@ end
   depends cb
 end
 
+depends 'database'
+
 attribute "sonar/dir",
   :display_name => "Sonar directory",
   :description => "Path to sonar",
